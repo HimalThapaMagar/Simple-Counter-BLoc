@@ -1,5 +1,5 @@
 import 'package:counter_bloc/presentation/home/cubit/counter_cubit.dart';
-import 'package:counter_bloc/presentation/home/pages/Increment_decrement_page.dart';
+import 'package:counter_bloc/presentation/home/pages/increment_decrement_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final _counterCubit = BlocProvider.of<CounterCubit>(context);
+    final counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             BlocBuilder<CounterCubit, int>(
-              bloc: _counterCubit,
+              bloc: counterCubit,
               builder: (context, counter){ 
                 return Text(
                   '$counter',
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => IncrementDecrementPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const IncrementDecrementPage()));
       },
 
       child: const Icon(Icons.arrow_forward),

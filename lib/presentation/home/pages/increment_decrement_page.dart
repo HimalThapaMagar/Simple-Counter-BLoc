@@ -6,7 +6,7 @@ class IncrementDecrementPage extends StatelessWidget {
   const IncrementDecrementPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final _counterCubit = BlocProvider.of<CounterCubit>(context);
+    final counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -14,7 +14,7 @@ class IncrementDecrementPage extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              _counterCubit.increment();
+              counterCubit.increment();
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
@@ -22,7 +22,7 @@ class IncrementDecrementPage extends StatelessWidget {
           const SizedBox(height: 8),
           FloatingActionButton(
             onPressed: () {
-              _counterCubit.decrement();
+              counterCubit.decrement();
             },
             tooltip: 'Decrement',
             child: const Icon(Icons.minimize),
