@@ -1,4 +1,5 @@
 import 'package:counter_bloc/presentation/home/cubit/counter_cubit.dart';
+import 'package:counter_bloc/presentation/home/pages/Increment_decrement_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,10 +13,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final CounterCubit _counterCubit = CounterCubit();
+  // final CounterCubit _counterCubit = CounterCubit();
+
   @override
   Widget build(BuildContext context) {
-    int counter = _counterCubit.state;
+    final _counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -40,26 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: (){
-              _counterCubit.increment();
-            },
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 8),
-           FloatingActionButton(
-            onPressed: (){
-              _counterCubit.decrement();
-            },
-            tooltip: 'Decrement',
-            child: const Icon(Icons.minimize),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => IncrementDecrementPage()));
+      },
+
+      child: const Icon(Icons.arrow_forward),
       ),
     );
   }
